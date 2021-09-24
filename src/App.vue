@@ -1,8 +1,11 @@
 <template>
-  <v-app>
-    <navigation :color="color" :flat="flat" />
-    <v-main class="pt-0">
-      <router-view/>  
+  <div id="wrapper">
+    <navigation />
+    <div class="no-bottom no-top" id="content">
+      <router-view/>
+    </div>
+    <!-- <v-main class="pt-0">
+      <router-view/>
     </v-main>
     <v-scale-transition>
       <v-btn
@@ -18,15 +21,8 @@
       >
         <v-icon>mdi-arrow-up</v-icon>
       </v-btn>
-    </v-scale-transition>
-  </v-app>
-  <!-- <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div> -->
+    </v-scale-transition> -->
+  </div>
 </template>
 
 <script>

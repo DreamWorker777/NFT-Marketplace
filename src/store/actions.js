@@ -20,13 +20,7 @@ const actions = {
 				password: payload.password,
 				wallet: payload.wallet,
 			}
-			// var signupUser = new FormData();
-			// signupUser.append('firstname', payload.firstname);
-			// signupUser.append('lastname', payload.lastname);
-			// signupUser.append('username', payload.username);
-			// signupUser.append('email', payload.email);
-			// signupUser.append('password', payload.password);
-			// axios.post(`${apiUrl}auth/signup.php`, signupUser).then((res) => {
+
 			axios.post(`${apiUrl}auth/signup`, signupUser).then((res) => {
 				console.log(res);
 				resolve(res);
@@ -44,15 +38,15 @@ const actions = {
 				username: payload.username,
 				password: payload.password,
 			}
-			// var loginData = new FormData();
-			// loginData.append('username', payload.username);
-			// loginData.append('password', payload.password);
-			// axios.post(`${apiUrl}auth/signin.php`, loginData).then((res) => {
+			
 			axios.post(`${apiUrl}auth/signin`, loginData).then((res) => {
 				console.log(res);
+
 				context.commit('UPDATE_SIGNED', true);
 				context.commit('UPDATE_USER_INFO', res.data);
+
 				axios.defaults.headers.common['x-access-token'] = res.data.accessToken
+				
 				resolve(res);
 			}).catch((err) => {
 				console.log(err);

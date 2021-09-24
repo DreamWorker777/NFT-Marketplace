@@ -7,6 +7,7 @@ import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
 import Gennft from '@/views/Gennft.vue'
 import Profile from '@/views/Profile.vue'
+import About from '@/views/About.vue'
 
 import store from '@/store/store'
 
@@ -22,14 +23,12 @@ const routes = [
     path: '/market',
     name: 'Market',
     component: Market,
-    // meta: { requiresAuth: true }
   },
   {
     path: '/market/:itemId',
     name: 'Market Item View',
     component: MarketItem,
     props: true,
-    // meta: { requiresAuth: true }
   },
   {
     path: '/login',
@@ -45,7 +44,6 @@ const routes = [
     path: '/generatenft',
     name: 'GenerateNFT',
     component: Gennft,
-    // meta: { requiresAuth: true }
   },
   {
     path: '/profile',
@@ -56,7 +54,7 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import('../views/About.vue')
+    component: About
   }
 ]
 

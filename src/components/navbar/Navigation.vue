@@ -1,5 +1,5 @@
-<template>
-  <div>
+tn<template>
+  <!-- <div>
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -93,7 +93,6 @@
               v-on="on"
             >
               <v-avatar class="mr-2">
-                <!-- <v-img :src="getprofileImg"/> -->
                 <v-img src="@/assets/logo.png"/>
               </v-avatar>
               <span>{{profile.username}}</span>      
@@ -121,7 +120,71 @@
         </v-col>
       </div>
     </v-app-bar>
-  </div>
+  </div> -->
+  <header class="transparent">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="de-flex sm-pt10">
+                    <div class="de-flex-col">
+                        <div class="de-flex-col">
+                            <!-- logo begin -->
+                            <div id="logo">
+                                <a href="index.html">
+                                    <img alt="" class="logo" src="@/assets/images/logo-light.png" />
+                                    <img alt="" class="logo-2" src="@/assets/images/logo.png" />
+                                </a>
+                            </div>
+                            <!-- logo close -->
+                        </div>
+                        <div class="de-flex-col">
+                            <input id="quick_search" class="xs-hide" name="quick_search" placeholder="search item here..." type="text" />
+                        </div>
+                    </div>
+                    <div class="de-flex-col header-col-mid">
+                        <!-- mainmenu begin -->
+                        <ul id="mainmenu">
+                            <li>
+                                <a href="index.html">Home<span></span></a>
+                                <ul>
+                                    <li><a href="03_grey-index.html">New: Grey Scheme</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="explore.html">Explore<span></span></a>
+                                <ul>
+                                    <li><a href="explore.html">Explore</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Pages<span></span></a>
+                                <ul>
+                                    <li><a href="author.html">Author</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Stats<span></span></a>
+                                <ul>
+                                    <li><a href="activity.html">Activity</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Elements<span></span></a>
+                                <ul>
+                                    <li><a href="icons-elegant.html">Elegant Icons</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div class="menu_side_area">
+                            <a href="wallet.html" class="btn-main"><i class="icon_wallet_alt"></i><span>Connect Wallet</span></a>
+                            <span id="menu-btn"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -194,3 +257,7 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+    
+</style>
