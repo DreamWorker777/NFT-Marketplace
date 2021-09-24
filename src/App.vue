@@ -1,93 +1,41 @@
 <template>
   <div id="wrapper">
+    
+    <!-- Header -->
     <navigation />
+
+    <!-- Content -->
     <div class="no-bottom no-top" id="content">
-      <router-view/>
+      <router-view />
     </div>
-    <!-- <v-main class="pt-0">
-      <router-view/>
-    </v-main>
-    <v-scale-transition>
-      <v-btn
-        fab
-        v-show="fab"
-        v-scroll="onScroll"
-        dark
-        fixed
-        bottom
-        right
-        color="secondary"
-        @click="toTop"
-      >
-        <v-icon>mdi-arrow-up</v-icon>
-      </v-btn>
-    </v-scale-transition> -->
+
+    <!-- Footer -->
+    <footer-component />
+
+    <!-- To Top Button -->
+    <a href="#" id="back-to-top"></a>
+
   </div>
 </template>
 
 <script>
-import navigation from "@/components/navbar/Navigation"
+import Navigation from "@/components/Header/Navigation"
+import FooterComponent from '@/components/Footer/Footer.vue'
+
 export default {
+  name: 'App',
   components: {
-    navigation
+    Navigation,
+    FooterComponent,
   },
-  data: () => ({
-    fab: null,
-    color: "",
-    flat: null,
-  }),
-
-  created() {
-    const top = window.pageYOffset || 0;
-    if (top <= 20) {
-      this.color = "transparent";
-      this.flat = true;
-    }
+  updated() {
+    this.$unloadScript('https://gigaland.io/js/designesia.js')
+      .then(() => {
+        this.$loadScript('https://gigaland.io/js/designesia.js')
+      });
   },
-  watch: {
-    fab(value) {
-      if (value) {
-        this.color = "indigo darken-4";
-        this.flat = false;
-      } else {
-        this.color = "transparent";
-        this.flat = true;
-      }
-    },
-  },
-
-  methods: {
-    onScroll(e) {
-      if (typeof window === "undefined") return;
-      const top = window.pageYOffset || e.target.scrollTop || 0;
-      this.fab = top > 20;
-    },
-    toTop() {
-      this.$vuetify.goTo(0);
-    },
-  },
-}
-</script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  mounted() {
+    this.$loadScript('https://gigaland.io/js/designesia.js')
   }
 }
-</style>
+</script>

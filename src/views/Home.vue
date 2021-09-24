@@ -1,5 +1,6 @@
 <template>
   <div class="no-bottom no-top" id="content">
+
     <div id="top"></div>
     
     <top-particle />
@@ -8,18 +9,9 @@
     <top-sellers />
     <steps />
 
-    <!-- <home />
-    <about />
-    <download />
-    <contact /> -->
   </div>
 </template>
 <script>
-// import home from "@/components/landing/HomeSection";
-// import about from "@/components/landing/AboutSection";
-// import download from "@/components/landing/DownloadSection";
-// import contact from "@/components/landing/ContactSection";
-
 import TopParticle from "@/components/Home/TopParticle";
 import PopularItems from "@/components/Home/PopularItems";
 import Collections from "@/components/Home/Collections";
@@ -33,10 +25,22 @@ export default {
     Collections,
     TopSellers,
     Steps
-    // home,
-    // about,
-    // download,
-    // contact,
   },
+  mounted() {
+    this.$loadScript('https://gigaland.io/js/particles.js')
+      .then(() => {
+        this.$unloadScript('https://gigaland.io/js/particles.js')
+      })
+    
+    this.$loadScript('https://gigaland.io/js/particles-settings-2.js')
+      .then(() => {
+        this.$unloadScript('https://gigaland.io/js/particles-settings-2.js')
+      })
+
+    this.$loadScript('https://gigaland.io/js/particles.js')
+      .then(() => {
+        this.$loadScript('https://gigaland.io/js/particles-settings-2.js')
+      })
+  }
 }
 </script>

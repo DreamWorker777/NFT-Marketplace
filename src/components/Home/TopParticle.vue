@@ -10,8 +10,8 @@
                         <h1>Create and sell your own unique NFTs.</h1>
                         <p class="lead">Easiest place to buy and sell cryptocurrency.<br>Sign up and get started today.</p>
                         <div class="spacer-20"></div>
-                        <a href="explore.html" class="btn-main">Explore</a>&nbsp;&nbsp;
-                        <a href="login.html" class="btn-main btn-white">Create</a>
+                        <router-link :to="{ name: 'Market' }" class="btn-main"> Explore<span></span> </router-link>&nbsp;&nbsp;
+                        <router-link :to="{ name: 'GenerateNFT' }" class="btn-main btn-white"> Create<span></span> </router-link>
                         <div class="spacer-double"></div>
                     </div>
                 </div>

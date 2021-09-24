@@ -32,7 +32,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: Login
   },
   {
@@ -44,6 +44,7 @@ const routes = [
     path: '/generatenft',
     name: 'GenerateNFT',
     component: Gennft,
+    meta: { requiresAuth: true }
   },
   {
     path: '/profile',

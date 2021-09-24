@@ -17,13 +17,13 @@
                         <div class="de_countdown" data-year="2021" data-month="10" data-day="16" data-hour="8"></div>
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-1.jpg" alt="">
+                                <img class="lazy" src="images/author/author-1.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-1.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-1.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -47,13 +47,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-10.jpg" alt="">
+                                <img class="lazy" src="images/author/author-10.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-2.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-2.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -78,13 +78,13 @@
                         <div class="de_countdown" data-year="2021" data-month="10" data-day="14" data-hour="8"></div>
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-11.jpg" alt="">
+                                <img class="lazy" src="images/author/author-11.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-3.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-3.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -108,13 +108,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-12.jpg" alt="">
+                                <img class="lazy" src="images/author/author-12.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-4.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-4.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -138,13 +138,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-9.jpg" alt="">
+                                <img class="lazy" src="images/author/author-9.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-4.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-4.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -169,13 +169,13 @@
                         <div class="de_countdown" data-year="2021" data-month="10" data-day="6" data-hour="8"></div>
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-2.jpg" alt="">
+                                <img class="lazy" src="images/author/author-2.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-2.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-2.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -199,13 +199,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-3.jpg" alt="">
+                                <img class="lazy" src="images/author/author-3.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-1.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-1.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -230,13 +230,13 @@
                         <div class="de_countdown" data-year="2021" data-month="9" data-day="29" data-hour="8"></div>
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-4.jpg" alt="">
+                                <img class="lazy" src="images/author/author-4.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-5.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-5.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -261,13 +261,13 @@
                         <div class="de_countdown" data-year="2021" data-month="10" data-day="16" data-hour="8"></div>
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-5.jpg" alt="">
+                                <img class="lazy" src="images/author/author-5.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-3.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-3.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -291,13 +291,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-7.jpg" alt="">
+                                <img class="lazy" src="images/author/author-7.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-5.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-5.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -322,13 +322,13 @@
                         <div class="de_countdown" data-year="2021" data-month="10" data-day="16" data-hour="8"></div>
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-6.jpg" alt="">
+                                <img class="lazy" src="images/author/author-6.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-6.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-6.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -352,13 +352,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-8.jpg" alt="">
+                                <img class="lazy" src="images/author/author-8.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-7.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-7.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -382,13 +382,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-9.jpg" alt="">
+                                <img class="lazy" src="images/author/author-9.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-6.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-6.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -412,13 +412,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-12.jpg" alt="">
+                                <img class="lazy" src="images/author/author-12.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/anim-8.webp" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/anim-8.webp" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -442,13 +442,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-4.jpg" alt="">
+                                <img class="lazy" src="images/author/author-4.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-7.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-7.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">
@@ -472,13 +472,13 @@
                     <div class="nft__item">
                         <div class="author_list_pp">
                             <a href="author.html">                                    
-                                <img class="lazy" src="@/assets/images/author/author-1.jpg" alt="">
+                                <img class="lazy" src="images/author/author-1.jpg" alt="">
                                 <i class="fa fa-check"></i>
                             </a>
                         </div>
                         <div class="nft__item_wrap">
                             <a href="item-details.html">
-                                <img src="@/assets/images/items/static-8.jpg" class="lazy nft__item_preview" alt="">
+                                <img src="images/items/static-8.jpg" class="lazy nft__item_preview" alt="">
                             </a>
                         </div>
                         <div class="nft__item_info">

@@ -14,7 +14,7 @@
                         <li>                                    
                             <div class="author_list_pp">
                                 <a href="author.html">
-                                    <img class="lazy" src="@/assets/images/author/author-1.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-1.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>                                    
@@ -26,7 +26,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-2.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-2.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -38,7 +38,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-3.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-3.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -50,7 +50,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-4.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-4.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -62,7 +62,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-5.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-5.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -74,7 +74,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-6.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-6.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -86,7 +86,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-7.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-7.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -98,7 +98,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-8.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-8.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -110,7 +110,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-9.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-9.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -122,7 +122,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-10.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-10.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -134,7 +134,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-11.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-11.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
@@ -146,7 +146,7 @@
                         <li>
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="@/assets/images/author/author-12.jpg" alt="">
+                                    <img class="lazy" src="images/author/author-12.jpg" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>
