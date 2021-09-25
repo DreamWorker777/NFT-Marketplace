@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-parallax
+    <!-- <v-parallax
       dark
       height="80"
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
@@ -93,33 +93,22 @@
                       </v-row>
                     </v-card>
                   </v-col>
-                  <!-- <v-col cols="12">
-                    <v-card class="pa-4">
-                      <v-row>
-                        <v-col cols="12">
-                          <span class="text-h6">Current price</span>
-                        </v-col>
-                        <v-col cols="12">
-                        </v-col>
-                      </v-row>  
-                    </v-card>
-                  </v-col> -->
                 </v-row>
               </v-col>
             </v-row>
           </v-container>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
   </div>
 </template>
 <script>
 import { initweb3, getWeb3 } from '@/web3Server';
 import { mapActions } from 'vuex';
-import Binancelogo from '@/components/Binancelogo.vue'
+// import Binancelogo from '@/components/Binancelogo.vue'
 export default {
   components: {
-    Binancelogo,
+    // Binancelogo,
   },
   data: () => ({
     web3: null,

@@ -4,9 +4,13 @@
     <div id="top"></div>
     
     <top-particle />
+
     <popular-items />
+
     <collections />
+
     <top-sellers />
+    
     <steps />
 
   </div>

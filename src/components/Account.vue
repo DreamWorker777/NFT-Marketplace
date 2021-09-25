@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <!-- <v-row>
       <v-col cols="12">
         <v-text-field label="User Name" outlined v-model="userProfile.username" :readonly="editable"></v-text-field>
       </v-col>
@@ -18,7 +18,7 @@
         <v-btn class="ma-3" color="primary" v-if="editable" @click="editfunc">Edit</v-btn>
         <v-btn class="ma-3" color="warning" v-if="!editable">Submit</v-btn>
         <v-btn class="ma-3" color="error" v-if="!editable" @click="cancelfunc">Cancel</v-btn>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 <script>

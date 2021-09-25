@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-parallax
+    <!-- <v-parallax
       dark
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
     >
@@ -70,7 +70,7 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
   </div>
   
 </template>
@@ -78,10 +78,10 @@
 <script>
 import { initweb3, getWeb3 } from '@/web3Server';
 import { mapActions } from 'vuex'
-import Binancelogo from '@/components/Binancelogo.vue'
+// import Binancelogo from '@/components/Binancelogo.vue'
 export default {
   components: {
-    Binancelogo
+    // Binancelogo
   },
   data: () => ({
     web3: null,

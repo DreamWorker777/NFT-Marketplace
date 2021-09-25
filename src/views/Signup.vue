@@ -1,6 +1,6 @@
 <template>
   <div class="fill-height" :style="backgroundStyle">
-    <v-container class="fill-height">
+    <!-- <v-container class="fill-height">
       <v-row justify="center" align="center">
         <v-col class="ma-auto" cols="6">
           <v-form v-model="signupvalid" ref="signupform">
@@ -88,7 +88,7 @@
           </v-form>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
   </div>
 </template>
 <script>

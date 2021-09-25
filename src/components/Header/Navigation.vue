@@ -29,7 +29,7 @@
                                 <router-link :to="{ name: 'About' }"> About<span></span> </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'Faq' }"> Faq<span></span> </router-link>
+                                <router-link :to="{ name: 'Contact' }"> Contact<span></span> </router-link>
                             </li>
                         </ul>
                         <div class="menu_side_area">
@@ -55,7 +55,7 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   data: () => ({
-
+    // ToDo: Component Data (internal)
   }),
   computed: {
     ...mapGetters([
@@ -63,13 +63,13 @@ export default {
       'profile',
     ]),
     getprofileImg() {
-      if (this.profile.avata) {
+      if ( this.profile.avata ) {
         return this.profile.avata;
       } else {
         return this.profilImg;
       }
     },
-    getUsername(){
+    getUsername() {
       return this.profile.username;
     }
   },
@@ -77,18 +77,18 @@ export default {
     ...mapActions([
       'logout',
     ]),
-    gotoLink(link) {
-      this.$router.push(link);
+    gotoLink( link ) {
+      this.$router.push( link );
     },
     logouter() {
-      this.logout().then((res) => {
-        console.log('logout: ', res);
-        location.href="./"
+      this.logout().then(( res ) => {
+        console.log( 'logout: ', res );
+        location.href = "./";
       });
     }
   },
   mounted() {
-    
+    // ToDo: Mounted Action
   },
 }
 </script>

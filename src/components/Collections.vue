@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row>
+    <!-- <v-row>
       <v-col v-for="(item, index) in datas"
       :key="index" cols="4">
         <v-card
@@ -44,15 +44,15 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
   </div>
 </template>
 <script>
 import { mapActions } from 'vuex'
-import Binancelogo from '@/components/Binancelogo.vue'
+// import Binancelogo from '@/components/Binancelogo.vue'
 export default {
   components: {
-    Binancelogo
+    // Binancelogo
   },
   data: () => ({
     datas: [],

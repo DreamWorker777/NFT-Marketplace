@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-parallax
+    <!-- <v-parallax
       dark
       height="250"
       src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
@@ -133,7 +133,7 @@
           </v-container>
         </v-col>
       </v-row>
-    </v-container>
+    </v-container> -->
   </div>
 </template>
 <script>

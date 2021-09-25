@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '@/views/Home.vue'
 import Market from '@/views/Market.vue'
 import MarketItem from '@/views/MarketItem.vue'
 import Login from '@/views/Login.vue'
-import Signup from '@/views/Signup.vue'
-import Gennft from '@/views/Gennft.vue'
+import SignUp from '@/views/Signup.vue'
+import GenNFT from '@/views/Gennft.vue'
 import Profile from '@/views/Profile.vue'
 import About from '@/views/About.vue'
 
@@ -26,7 +27,7 @@ const routes = [
   },
   {
     path: '/market/:itemId',
-    name: 'Market Item View',
+    name: 'MarketItem',
     component: MarketItem,
     props: true,
   },
@@ -37,13 +38,13 @@ const routes = [
   },
   {
     path: '/signup',
-    name: 'Signup',
-    component: Signup
+    name: 'SignUp',
+    component: SignUp
   },
   {
     path: '/generatenft',
     name: 'GenerateNFT',
-    component: Gennft,
+    component: GenNFT,
     meta: { requiresAuth: true }
   },
   {
@@ -65,9 +66,10 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if(to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isAuthenticated) {
+// middleware
+router.beforeEach(( to, from, next ) => {
+  if( to.matched.some( record => record.meta.requiresAuth ) ) {
+    if ( store.getters.isAuthenticated ) {
       next()
       return
     }

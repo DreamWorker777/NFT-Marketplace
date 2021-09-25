@@ -1,14 +1,11 @@
 <template>
 <div>
-  <v-parallax
+  <!-- <v-parallax
   height="150"
     dark src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
   >
   </v-parallax>
   <v-container>
-    <!-- <v-img src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-    @click="uploadImg()"
-    ref="profileImg"  max-width="150" height="150" class="rounded-circle ma-auto mt-n16"/> -->
     <v-avatar
       class="mt-n16"
       size="128"
@@ -94,7 +91,6 @@
                       <v-row>
                         <v-col cols="12">
                           <v-container>
-                            <!-- <Collections /> -->
                             <v-row>
                               <v-col v-for="(item, index) in collections"
                               :key="index" cols="4">
@@ -152,7 +148,7 @@
       </v-col>                                                              
       
     </v-row>
-  </v-container>
+  </v-container> -->
   
   </div>
 </template>
