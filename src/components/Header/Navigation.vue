@@ -38,7 +38,7 @@
                               class="btn-main">
 
                               <i class="icon_wallet_alt"></i>
-                              <span>Login</span> 
+                              <span>Sign In</span> 
 
                             </router-link>
                             <span id="menu-btn"></span>

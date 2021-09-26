@@ -155,14 +155,14 @@
 
 <script>
 import { initweb3, getWeb3 } from '@/web3Server';
-import Account from '@/components/Account.vue'
+// import Account from '@/components/Account.vue'
 // import Collections from '@/components/Collections.vue'
 import { mapGetters, mapActions } from 'vuex'
-import Binancelogo from '@/components/Binancelogo.vue'
+// import Binancelogo from '@/components/Binancelogo.vue'
 export default {
   components: {
-    Account,
-    Binancelogo,
+    // Account,
+    // Binancelogo,
     // Collections,
   },
   data: () => ({

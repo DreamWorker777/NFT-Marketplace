@@ -5,15 +5,15 @@ import router from './router'
 import store from './store/store'
 
 import App from './App.vue'
-import Binancelogo from '@/components/Binancelogo.vue'
+import BinanceLogo from '@/components/BinanceLogo.vue'
 
 Vue.config.productionTip = false
 
-Vue.use(Binancelogo)
+Vue.use(BinanceLogo)
 Vue.use(LoadScript)
 
 new Vue({
-  Binancelogo,
+  BinanceLogo,
   router,
   store,
   render: h => h(App)
