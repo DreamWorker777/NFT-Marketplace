@@ -49,8 +49,7 @@
                                         </div>
 
                                         <div class="field-set">
-                                            <button 
-                                                id='send_message' 
+                                            <button
                                                 class="btn btn-main btn-fullwidth color-2"
                                                 @click.prevent="loginSubmit"
                                                 >
@@ -61,14 +60,6 @@
                                         <div class="clearfix"></div>
 
                                         <div class="spacer-single"></div>
-
-                                        <!-- social icons -->
-                                        <ul class="list s3">
-                                            <li>Login with:</li>
-                                            <li><a href="#">Facebook</a></li>
-                                            <li><a href="#">Google</a></li>
-                                        </ul>
-                                        <!-- social icons close -->
                                     </form>
                                 </div>
                             </div>
@@ -100,6 +91,9 @@ export default {
             'login',
         ]),
         validate() {
+            this.validateForm.username = true;
+            this.validateForm.password = true;
+
             if( !this.loginForm.username )
                 this.validateForm.username = false;
             if( !this.loginForm.password || this.loginForm.password.length < 8 )
@@ -107,21 +101,43 @@ export default {
 
             if( this.validateForm.username && this.validateForm.password )
                 return true;
-            
+
+            this.$toasted.error('Please enter username or password correctly.')
             return false;
         },
         loginSubmit() {
             let self = this;
 
             if(this.validate()) {
-
+                // TO DO : call login API
                 this.login(this.loginForm).then((res) => {
-                    
-                    console.log(res);
-                    console.log(self.$router);
+                    if( res.data.success ) {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'success',
+                            title: 'Success',
+                            text: 'You have signed in to this site!'
+                        });
 
-                    location.href = "./";
-                })
+                        self.$router.push({ name: 'Home' });
+                        // location.href = "./";
+                    } else {
+                        this.$notify({
+                            group: 'foo',
+                            type: 'warn',
+                            title: 'Login Failed',
+                            text: res.data.message
+                        });
+                    }
+                }).catch( err => {
+                    console.warn('login: ', err);
+                    this.$notify({
+                        group: 'foo',
+                        type: 'error',
+                        title: 'Login Failed',
+                        text: 'Something went wrong.'
+                    });
+                });
             }
         }
     }

@@ -15439,3 +15439,7 @@ img {
         top: -21px;
     }
 }
+
+.vue-notification {
+    font-size: 15px !important;
+}

@@ -26,16 +26,22 @@
                                 <router-link :to="{ name: 'Market' }"> Martketplace<span></span> </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'About' }"> About<span></span> </router-link>
-                            </li>
-                            <li>
                                 <router-link :to="{ name: 'Contact' }"> Contact<span></span> </router-link>
                             </li>
+                            <li v-if="isAuthenticated">
+                                <a href="#" class="profile"> <img src="@/assets/logo.png" alt="" class="avatar"> {{ getUsername }}<span></span></a>
+                                <ul>
+                                    <li><router-link :to="{ name: 'Profile' }"> Profile </router-link></li>
+                                    <li><router-link :to="{ name: 'GenerateNFT' }"> Create NFT </router-link></li>
+                                    <li><a href="#" @click.prevent="logOutAction">Logout</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                        <div class="menu_side_area">
+                        <div class="menu_side_area" v-if="!isAuthenticated">
                             <router-link 
                               :to="{ name: 'Login' }" 
-                              class="btn-main">
+                              class="btn-main"
+                              >
 
                               <i class="icon_wallet_alt"></i>
                               <span>Sign In</span> 
@@ -56,6 +62,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data: () => ({
     // ToDo: Component Data (internal)
+    profileImg: '@/assets/logo.png'
   }),
   computed: {
     ...mapGetters([
@@ -77,10 +84,7 @@ export default {
     ...mapActions([
       'logout',
     ]),
-    gotoLink( link ) {
-      this.$router.push( link );
-    },
-    logouter() {
+    logOutAction() {
       this.logout().then(( res ) => {
         console.log( 'logout: ', res );
         location.href = "./";
@@ -94,5 +98,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    
+    .avatar {
+      width: 30px;
+      margin-right: 5px;
+    }
 </style>

@@ -8,7 +8,7 @@ import Login from '@/views/Login.vue'
 import SignUp from '@/views/SignUp.vue'
 import GenNFT from '@/views/GenNFT.vue'
 import Profile from '@/views/Profile.vue'
-import About from '@/views/About.vue'
+import Contact from '@/views/Contact.vue'
 
 import store from '@/store/store'
 
@@ -54,9 +54,9 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/contact',
+    name: 'Contact',
+    component: Contact
   }
 ]
 

@@ -15,6 +15,8 @@
     <!-- To Top Button -->
     <a href="#" id="back-to-top"></a>
 
+    <notifications group="foo" />
+    
   </div>
 </template>
 

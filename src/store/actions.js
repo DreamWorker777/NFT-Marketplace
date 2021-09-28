@@ -11,7 +11,6 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 const actions = {
 	signup(context, payload){
 		return new Promise((resolve, reject) => {
-			console.log(payload)
 			var signupUser = {
 				first: payload.firstname,
 				last: payload.lastname,
@@ -33,7 +32,6 @@ const actions = {
 
 	login(context, payload){
 		return new Promise((resolve, reject) => {
-			console.log(payload)
 			var loginData = {
 				username: payload.username,
 				password: payload.password,
