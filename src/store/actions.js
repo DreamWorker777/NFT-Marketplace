@@ -134,6 +134,12 @@ const actions = {
 			delete axios.defaults.headers.common['Authorization']
 			resolve('loged out')
 		})
+	},
+	setLoading( context, payload ) {
+		return new Promise((resolve) => {
+			context.commit('SETLOADING', payload)
+			resolve('Set Loading')
+		})
 	}
 }
 

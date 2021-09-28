@@ -20,9 +20,11 @@ const getters = {
             return false;
         }
     },
-
     web3: state => {
         return state.web3;
+    },
+    isLoading: state => {
+        return state.isLoading;
     }
 }
 export default getters

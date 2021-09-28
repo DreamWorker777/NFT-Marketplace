@@ -13,6 +13,7 @@ const state = {
     AppActiveUser: userState,
     loggedState: false,
     web3: null,
+    isLoading: false,
 }
 
 export default state

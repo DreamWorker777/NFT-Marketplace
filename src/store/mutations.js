@@ -34,8 +34,11 @@ const mutations = {
     state.AppActiveUser = null;
     localStorage.removeItem('userInfo');
     localStorage.removeItem('loggedState');
-  }
+  },
 
+  SETLOADING(state, payload) {
+    state.isLoading = payload;
+  } 
 }
 
 export default mutations

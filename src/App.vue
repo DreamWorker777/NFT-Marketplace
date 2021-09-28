@@ -17,18 +17,28 @@
 
     <notifications group="foo" />
     
+    <loading v-if="isLoading" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Navigation from "@/components/Header/Navigation"
 import FooterComponent from '@/components/Footer/Footer.vue'
+import Loading from '@/components/Loading.vue'
 
 export default {
   name: 'App',
   components: {
     Navigation,
     FooterComponent,
+    Loading
+  },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+    ]),
   },
   updated() {
     this.$unloadScript('https://gigaland.io/js/designesia.js')
