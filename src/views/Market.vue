@@ -17,7 +17,6 @@
                 </div>
         </section>
         <!-- section close -->
-        
 
         <!-- section begin -->
         <section aria-label="section">
@@ -91,7 +90,7 @@
                                     <h4>{{ item.title }}</h4>
                                 </a>
                                 <div class="nft__item_price">
-                                    {{ item.price }} ETH
+                                    {{ item.price }} BNB
                                 </div>
                                 <div class="nft__item_action">
                                     <a @click="nftItemView(item.id)">View Details</a>
@@ -126,7 +125,7 @@ export default {
     computed: {
     },
     async mounted() {
-        // this.setLoading(true);
+        this.setLoading(true);
 
         // TODO: Get web3 & network id
         this.web3 = initweb3;
@@ -183,3 +182,12 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+.nft__item {
+    cursor: pointer;
+    &_action {
+        color: rgb(86, 146, 206);
+    }
+}
+</style>

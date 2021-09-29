@@ -30,6 +30,7 @@ const routes = [
     name: 'MarketItem',
     component: MarketItem,
     props: true,
+    meta: { requiresAuth: true }
   },
   {
     path: '/login',

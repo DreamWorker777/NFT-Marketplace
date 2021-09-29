@@ -226,7 +226,8 @@ export default {
   },
   methods: {
     ...mapActions([
-        'generateNFT'
+        'generateNFT',
+        'setLoading'
     ]),
     onnftfilechange() {
         const self = this;
@@ -253,6 +254,8 @@ export default {
         const self = this;
         
         if( this.validate() ) {
+            this.setLoading(true);
+
             let ipfsId;
             console.log('Create NFT Data: ', this.nftdata)
             
@@ -276,6 +279,7 @@ export default {
                         const artId = 1;
                         artNFT.methods.ownerOf(artId).call().then(owner => console.log('ooooo= owner of artId 1 =oooo', owner));
                         artNFT.methods.approve(self.artNFTmarketAddress, artId).send({from: self.account[0]}).once('receipt', (receipt) => {
+                            this.setLoading(false);
                             console.log("== nft approve ==", receipt);
 
                             this.$notify({

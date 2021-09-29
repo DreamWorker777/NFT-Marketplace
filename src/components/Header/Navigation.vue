@@ -29,7 +29,7 @@
                                 <router-link :to="{ name: 'Contact' }"> Contact<span></span> </router-link>
                             </li>
                             <li v-if="isAuthenticated">
-                                <a href="#" class="profile"> <img src="@/assets/logo.png" alt="" class="avatar"> {{ getUsername }}<span></span></a>
+                                <a href="#" class="profile"> <img :src="getprofileImg" alt="" class="avatar"> {{ getUsername }}<span></span></a>
                                 <ul>
                                     <li><router-link :to="{ name: 'Profile' }"> Profile </router-link></li>
                                     <li><router-link :to="{ name: 'GenerateNFT' }"> Create NFT </router-link></li>
@@ -62,7 +62,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data: () => ({
     // ToDo: Component Data (internal)
-    profileImg: '@/assets/logo.png'
+    profileImg: require('@/assets/logo.png')
   }),
   computed: {
     ...mapGetters([
@@ -73,7 +73,7 @@ export default {
       if ( this.profile.avata ) {
         return this.profile.avata;
       } else {
-        return this.profilImg;
+        return this.profileImg;
       }
     },
     getUsername() {
@@ -87,7 +87,7 @@ export default {
     logOutAction() {
       this.logout().then(( res ) => {
         console.log( 'logout: ', res );
-        location.href = "./";
+        location.href = "/";
       });
     }
   },
