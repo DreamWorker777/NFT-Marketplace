@@ -31,7 +31,7 @@ const mutations = {
 
   LOGOUT(state){
     state.loggedState = false;
-    state.AppActiveUser = null;
+    state.AppActiveUser = {};
     localStorage.removeItem('userInfo');
     localStorage.removeItem('loggedState');
   },

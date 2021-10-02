@@ -5,7 +5,7 @@ const getters = {
         return (state.AppActiveUser.id != "")? state.AppActiveUser : userinfo;
     },
     isAuthenticated: state => {
-        const user = (state.AppActiveUser.id != "")? state.AppActiveUser : JSON.parse(localStorage.getItem("userInfo"));
+        const user = (state.AppActiveUser && state.AppActiveUser.id != "")? state.AppActiveUser : JSON.parse(localStorage.getItem("userInfo"));
         
         if (user) {
             const hours = Math.abs(new Date() - new Date(user.genTokenDate)) / 36e5;
