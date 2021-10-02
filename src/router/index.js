@@ -9,6 +9,7 @@ import SignUp from '@/views/SignUp.vue'
 import GenNFT from '@/views/GenNFT.vue'
 import Profile from '@/views/Profile.vue'
 import Contact from '@/views/Contact.vue'
+import PasswordReset from '@/views/PasswordReset.vue'
 
 import store from '@/store/store'
 
@@ -43,6 +44,11 @@ const routes = [
     component: SignUp
   },
   {
+    path: '/passwordReset',
+    name: 'PasswordReset',
+    component: PasswordReset
+  },
+  {
     path: '/generatenft',
     name: 'GenerateNFT',
     component: GenNFT,
@@ -58,6 +64,10 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact
+  },
+  {
+      path: '*',
+      redirect: '/',
   }
 ]
 
@@ -67,7 +77,7 @@ const router = new VueRouter({
   routes
 })
 
-// middleware
+// navigation guard
 router.beforeEach(( to, from, next ) => {
   if( to.matched.some( record => record.meta.requiresAuth ) ) {
     if ( store.getters.isAuthenticated ) {

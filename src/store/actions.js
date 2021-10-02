@@ -38,7 +38,6 @@ const actions = {
 			}
 			
 			axios.post(`${apiUrl}auth/signin`, loginData).then((res) => {
-				console.log(res);
 
 				context.commit('UPDATE_SIGNED', true);
 				context.commit('UPDATE_USER_INFO', res.data);
@@ -47,11 +46,34 @@ const actions = {
 				
 				resolve(res);
 			}).catch((err) => {
-				console.log(err);
 				reject(new Error(err));
 			})
 		})
 	},
+
+    requestReset( context, payload ) {
+        return new Promise(( resolve, reject ) => {
+            const resetData = {
+                email: payload.email,
+            }
+
+            axios.post(`${apiUrl}auth/requestPasswordReset`, resetData).then((res) => {
+                resolve(res);
+            }).catch(err => {
+                reject( new Error(err) );
+            })
+        })
+    },
+
+    resetPassword( context, payload ) {
+        return new Promise(( resolve, reject ) => {
+            axios.post(`${apiUrl}auth/resetPassword`, payload).then((res) => {
+                resolve(res);
+            }).catch(err => {
+                reject( new Error(err) );
+            })
+        })
+    },
 
 	updateProfileImage(context, payload){
 		return new Promise((resolve, reject) => {

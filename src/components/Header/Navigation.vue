@@ -85,10 +85,10 @@ export default {
       'logout',
     ]),
     logOutAction() {
-      this.logout().then(( res ) => {
-        console.log( 'logout: ', res );
-        location.href = "/";
-      });
+        this.logout().then(( res ) => {
+            console.log( 'logout: ', res );
+            location.href = "/";
+        });
     }
   },
   mounted() {

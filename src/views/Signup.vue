@@ -190,11 +190,13 @@ export default {
   methods: {
     ...mapActions([
         'signup',
+        'setLoading'
     ]),
     signUpSubmit( ) {
         let self = this;
         if( this.validate() ) {
-            
+            this.setLoading(true);
+
             this.signup( this.signUpForm ).then(( res ) => {
                 if( res.data.success ) {
                     this.$notify({
@@ -212,6 +214,8 @@ export default {
                         text: res.data.message
                     });
                 }
+
+                this.setLoading(false);
             }).catch( (err) => {
                 console.warn(err);
 
@@ -221,6 +225,8 @@ export default {
                     title: 'Register failed',
                     text: 'Something went wrong!'
                 });
+
+                this.setLoading(false);
             });
         }
     },

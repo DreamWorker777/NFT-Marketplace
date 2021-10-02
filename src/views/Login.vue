@@ -18,7 +18,7 @@
                             </div>
                             
                             <div class="col-lg-4 offset-lg-2 wow fadeIn" data-wow-delay=".5s">
-                                <div class="box-rounded padding40" data-bgcolor="#ffffff">
+                                <div class="box-rounded padding40" data-bgcolor="#ffffff" v-show="loginPage">
                                     <h3 class="mb10">Sign In</h3>
 
                                     <p>Login using an existing account or create a new account 
@@ -48,6 +48,10 @@
                                                 >
                                         </div>
 
+                                        <div class="forgot_password">
+                                            <a href="#" @click.prevent="setForgotPassword">Forgot Password?</a>
+                                        </div>
+                                        
                                         <div class="field-set">
                                             <button
                                                 class="btn btn-main btn-fullwidth color-2"
@@ -57,6 +61,63 @@
                                             </button>
                                         </div>
 
+                                        <div class="clearfix"></div>
+
+                                        <div class="spacer-single"></div>
+                                    </form>
+                                </div>
+
+                                <div class="box-rounded padding40" data-bgcolor="#ffffff" v-show="forgotPasswordPage">
+                                    <h3 class="mb10">Forgot Password?</h3>
+
+                                    <p>
+                                        Enter your email and we'll send you instructions to reset your password
+                                    </p>
+
+                                    <form class="form-border">
+                                        <div class="field-set">
+                                            <input 
+                                                type='text' 
+                                                name='email' 
+                                                id='email' 
+                                                :class="{'form-control': true, 'error_input': !validateForm.email}"
+                                                placeholder="john@example.com"
+                                                v-model="resetForm.email"
+                                                >
+                                        </div>
+
+                                        <div class="backLogin">
+                                            <a href="#" @click.prevent="setLogin">Back to Login</a>
+                                        </div>
+                                        
+                                        <div class="field-set">
+                                            <button
+                                                class="btn btn-main btn-fullwidth color-2"
+                                                @click.prevent="resetPasswordSubmit"
+                                                >
+                                                Send reset link
+                                            </button>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="spacer-single"></div>
+                                    </form>
+                                </div>
+
+                                <div class="box-rounded padding40" data-bgcolor="#ffffff" v-show="checkEmailPage">
+                                    <h3 class="mb10">Request sent!</h3>
+
+                                    <p>
+                                        We have sent instructions to your email. If you don't receive it in few minutes, please try again.
+                                    </p>
+
+                                    <form class="form-border">
+
+                                        <div class="backLogin mt50">
+                                            <a href="#" @click.prevent="setLogin">Back to Login</a>
+                                        </div>
+                                        
                                         <div class="clearfix"></div>
 
                                         <div class="spacer-single"></div>
@@ -81,14 +142,23 @@ export default {
             username: '',
             password: '',
         },
+        resetForm: {
+            email: '',
+        },
         validateForm: {
             username: true,
             password: true,
-        }
+            email: true,
+        },
+        loginPage: true,
+        forgotPasswordPage: false,
+        checkEmailPage: false,
     }),
     methods: {
         ...mapActions([
             'login',
+            'requestReset',
+            'setLoading'
         ]),
         validate() {
             this.validateForm.username = true;
@@ -110,6 +180,9 @@ export default {
 
             if(this.validate()) {
                 // TO DO : call login API
+                
+                this.setLoading(true);
+
                 this.login(this.loginForm).then((res) => {
                     if( res.data.success ) {
                         this.$notify({
@@ -129,6 +202,7 @@ export default {
                             text: res.data.message
                         });
                     }
+                    this.setLoading(false);
                 }).catch( err => {
                     console.warn('login: ', err);
                     this.$notify({
@@ -137,8 +211,63 @@ export default {
                         title: 'Login Failed',
                         text: 'Something went wrong.'
                     });
+                    this.setLoading(false);
                 });
             }
+        },
+        resetPasswordSubmit() {
+            this.validateForm.email = true;
+
+            if( !this.resetForm.email ) {
+                this.validateForm.email = false;
+                this.$toasted.error('Email required.')
+                return;
+            }
+
+            if( /.+@.+/.test( this.resetForm.email ) === false ) {
+                this.validateForm.email = false;
+                this.$toasted.error('Please enter email correctly.')
+                return;
+            }
+            
+            this.setLoading(true);
+
+            this.requestReset(this.resetForm).then((res) => {
+                if( res.data.success ) {
+                    this.checkEmailPage = true;
+                    this.loginPage = false;
+                    this.forgotPasswordPage = false;
+                } else {
+                    this.$notify({
+                        group: 'foo',
+                        type: 'warn',
+                        title: 'Request Failed',
+                        text: res.data.message
+                    });
+                }
+
+                this.setLoading(false);
+            }).catch( err => {
+                console.warn('resetpass: ', err);
+                this.$notify({
+                    group: 'foo',
+                    type: 'error',
+                    title: 'Request Failed',
+                    text: 'Something went wrong.'
+                });
+
+                this.setLoading(false);
+            })
+        },
+        setForgotPassword() {
+            this.forgotPasswordPage = true;
+            this.loginPage = false;
+            this.checkEmailPage = false;
+        },
+        setLogin() {
+            this.loginPage = true;
+            this.forgotPasswordPage = false;
+            this.checkEmailPage = false;
         }
     }
 }
@@ -147,5 +276,16 @@ export default {
 <style lang="scss" scoped>
 #send_message {
     color: white !important;
+}
+.forgot_password {
+    text-align: right;
+    width: 100%;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+.backLogin {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 </style>
