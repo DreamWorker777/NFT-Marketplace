@@ -6,17 +6,19 @@ import { ArtNFT } from "./ArtNFT.sol";
 import { ArtNFTTradable } from "./ArtNFTTradable.sol";
 import { ArtNFTMarketplaceEvents } from "./art-nft-marketplace/ArtNFTMarketplaceEvents.sol";
 import { ArtNFTData } from "./ArtNFTData.sol";
+import { Strings } from "./libraries/Strings.sol";
 
 contract ArtNFTmarketplace is ArtNFTTradable, ArtNFTMarketplaceEvents {
     using SafeMath for uint256;
 
-    address public ART_NFT_MARKETPLACE;
+    address public ART_NFT_MARKETPLACE = Strings.parseAddr("0x976d53c3E3f6Fab8a7433Dfe4fA6D17885fDdE0c");
 
     ArtNFTData public artNFTData;
 
+    uint public TRANSACTION_FEE_PERCENT = 3;
+
     constructor(ArtNFTData _artNFTData) public ArtNFTTradable(_artNFTData) {
         artNFTData = _artNFTData;
-        address payable ART_NFT_MARKETPLACE = address(uint160(address(this)));
     }
 
     function buyPhotoNFT(ArtNFT _artNFT) public payable returns (bool) {
@@ -27,13 +29,18 @@ contract ArtNFTmarketplace is ArtNFTTradable, ArtNFTMarketplaceEvents {
         uint buyAmount = art.artPrice;
 
         require(msg.value == buyAmount, "msg.value should be equal to the buyAmount");
-        seller.transfer(msg.value);
+
+        uint marketplace_fee = getMarketplaceFee(msg.value);
+
+        seller.transfer( msg.value - marketplace_fee );  // send fee to owner
+
+        address payable marketplace = address(uint160(ART_NFT_MARKETPLACE));
+        marketplace.transfer( marketplace_fee );   // send fee to the marketplace
+
         address buyer = msg.sender;
         uint artId = 1;
-        // artNFT.approve(buyer, artId);
         address ownerBeforeOwnershipTransferred = artNFT.ownerOf(artId);
 
-        // transferOwnershipOfArtNFT(artNFT, artId, buyer);
         artNFTData.updateOwnerOfArtNFT(artNFT, buyer);
         artNFTData.updateStatus(artNFT, "Cancelled");
 
@@ -58,5 +65,9 @@ contract ArtNFTmarketplace is ArtNFTTradable, ArtNFTMarketplaceEvents {
         uint256 currentReputationCount;
 
         return currentReputationCount;
+    }
+
+    function getMarketplaceFee(uint price) public returns (uint) {
+        return price * TRANSACTION_FEE_PERCENT / 100;
     }
 }
