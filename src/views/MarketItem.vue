@@ -2,7 +2,7 @@
     <div class="no-bottom no-top" id="content">
         <div id="top"></div>
 
-        <section id="subheader" class="text-light" data-bgimage="url(/images/background/5.jpg) top">
+        <section id="subheader" class="text-light" data-bgimage="url(/images/background/subheader.jpg) top">
                 <div class="center-y relative text-center">
                     <div class="container">
                         <div class="row">
@@ -77,7 +77,7 @@
                             <div class="item_author">
                                 <div class="author_list_pp">
                                     <a href="author.html">
-                                        <img class="lazy" src="/images/author/author-11.jpg" alt="">
+                                        <img class="lazy" :src="require('@/assets/img/avatar.png')" alt="">
                                         <i class="fa fa-check"></i>
                                     </a>
                                 </div>
@@ -249,6 +249,9 @@ export default {
             });
 
             self.$router.push('/market');
+        }).catch(err => {
+            console.log(err);
+            this.setLoading(false);
         });
     },
     editableData() {

@@ -76,7 +76,7 @@
                         <div class="nft__item">
                             <div class="author_list_pp">
                                 <a href="author.html">                                    
-                                    <img class="lazy" src="images/author/author-11.jpg" alt="">
+                                    <img class="lazy" :src="require('@/assets/img/avatar.png')" alt="">
                                     <i class="fa fa-check"></i>
                                 </a>
                             </div>

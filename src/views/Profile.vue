@@ -182,11 +182,11 @@ export default {
         allArts.map((item) => {
             if(this.wallet.walletId == item.ownerAddress){
                 this.collections.push({
-                id: item.artNFT,
-                dataUrl: "https://ipfs.io/ipfs/"+item.ipfsHashofArt,
-                title: item.artNFTname,
-                detail: item.artNFTSymbol,
-                price: this.web3.utils.fromWei(item.artPrice, 'ether'),
+                    id: item.artNFT,
+                    dataUrl: "https://ipfs.io/ipfs/"+item.ipfsHashofArt,
+                    title: item.artNFTname,
+                    detail: item.artNFTSymbol,
+                    price: this.web3.utils.fromWei(item.artPrice, 'ether'),
                 })
             }
         })

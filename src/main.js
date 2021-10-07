@@ -12,7 +12,7 @@ import BinanceLogo from '@/components/BinanceLogo.vue'
 Vue.config.productionTip = false
 
 Vue.use(Toasted, {
-  duration: 1000
+  duration: 5000
 })
 Vue.use(Notifications)
 

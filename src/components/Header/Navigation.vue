@@ -26,7 +26,7 @@
                                 <router-link :to="{ name: 'Market' }"> Martketplace<span></span> </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'Contact' }"> Contact<span></span> </router-link>
+                                <router-link :to="{ name: 'Contact' }"> Contact Us<span></span> </router-link>
                             </li>
                             <li v-if="isAuthenticated">
                                 <a href="#" class="profile"> <img :src="getprofileImg" alt="" class="avatar"> {{ getUsername }}<span></span></a>
@@ -62,7 +62,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data: () => ({
     // ToDo: Component Data (internal)
-    profileImg: require('@/assets/logo.png')
+    profileImg: require('@/assets/img/avatar.png')
   }),
   computed: {
     ...mapGetters([
@@ -99,7 +99,11 @@ export default {
 
 <style lang="scss" scoped>
     .avatar {
-      width: 30px;
+      width: 50px;
       margin-right: 5px;
+    }
+    .profile {
+      padding-top: 20px !important;
+      padding-bottom: 0;
     }
 </style>

@@ -1,12 +1,11 @@
-// import authHeader from './authHeader';
-
-// import { getWeb3 } from '@/web3Server'
-// const authHeader = require('./authHeader');
 const axios = require('axios')
 const apiUrl = 'http://127.0.0.1:3000/api/'
 // const apiUrl = "https://truhelix.com/"
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['x-access-token'] = localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).success
+                                                    ? JSON.parse(localStorage.getItem('userInfo')).accessToken 
+                                                    : null;
 
 const actions = {
 	signup(context, payload){
@@ -161,6 +160,15 @@ const actions = {
 		return new Promise((resolve) => {
 			context.commit('SETLOADING', payload)
 			resolve('Set Loading')
+		})
+	},
+	getBadWordList( ) {
+		return new Promise(( resolve, reject ) => {
+			axios.post(`${apiUrl}app/getBadWordList`).then((res) => {
+				resolve(res);
+			}).catch((err) => {
+				reject(new Error(err));
+			})
 		})
 	}
 }
