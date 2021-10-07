@@ -1,5 +1,5 @@
 const axios = require('axios')
-const apiUrl = 'http://127.0.0.1:3000/api/'
+const apiUrl = 'http://10.10.12.183:3000/api/'
 // const apiUrl = "https://truhelix.com/"
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -26,7 +26,7 @@ const actions = {
 				console.log(err)
 				reject(new Error(err))
 			})
-		})		
+		})
 	},
 
 	login(context, payload){

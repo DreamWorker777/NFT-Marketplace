@@ -8,6 +8,7 @@ contract ArtNFTDataObjects {
         string artNFTname;
         string artNFTSymbol;
         address ownerAddress;
+        address creatorAddress;
         uint artPrice;
         string ipfsHashofArt;
         string status;

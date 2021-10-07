@@ -25,6 +25,7 @@ contract ArtNFTData is ArtNFTDataStorages {
             artNFTname: _artNFTname,
             artNFTSymbol: _artNFTSymbol,
             ownerAddress: _ownerAddress,
+            creatorAddress: _ownerAddress,
             artPrice: _artPrice,
             ipfsHashofArt: _ipfsHashOfArt,
             status: 'open',

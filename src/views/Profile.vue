@@ -47,14 +47,25 @@
                             </button>
                             <button 
                                 class="nav-link" 
-                                id="v-pills-Collections-tab" 
+                                id="v-pills-Uploaded-Collections-tab" 
                                 data-bs-toggle="pill" 
-                                data-bs-target="#v-pills-Collections" 
+                                data-bs-target="#v-pills-Uploaded-Collections" 
                                 type="button" 
                                 role="tab" 
-                                aria-controls="v-pills-Collections" 
+                                aria-controls="v-pills-Uploaded-Collections" 
                                 aria-selected="false">
-                                Collections
+                                Uploaded Collections
+                            </button>
+                            <button 
+                                class="nav-link" 
+                                id="v-pills-Purchased-Collections-tab" 
+                                data-bs-toggle="pill" 
+                                data-bs-target="#v-pills-Purchased-Collections" 
+                                type="button" 
+                                role="tab" 
+                                aria-controls="v-pills-Purchased-Collections" 
+                                aria-selected="false">
+                                Purchased Collections
                             </button>
                         </div>
                     </div>
@@ -108,14 +119,24 @@
                                 </form>
                             </div>
 
-                            <!-- Collections Panel -->
+                            <!-- Uploaded Collections Panel -->
                             <div 
                                 class="tab-pane fade" 
-                                id="v-pills-Collections" 
+                                id="v-pills-Uploaded-Collections" 
                                 role="tabpanel" 
-                                aria-labelledby="v-pills-Collections-tab"
+                                aria-labelledby="v-pills-Uploaded-Collections-tab"
                             >
-                                <profile-collections :datas="collections" />
+                                <profile-collections :datas="uploadedCollections" v-if="uploadedCollections.length > 0" />
+                            </div>
+
+                            <!-- Purchased Collections Panel -->
+                            <div 
+                                class="tab-pane fade" 
+                                id="v-pills-Purchased-Collections" 
+                                role="tabpanel" 
+                                aria-labelledby="v-pills-Purchased-Collections-tab"
+                            >
+                                <profile-collections :datas="purchasedCollections" v-if="purchasedCollections.length > 0"/>
                             </div>
                         </div>
                     </div>
@@ -141,7 +162,8 @@ export default {
             walletId: '',
             ballance: ''
         },
-        collections: []
+        uploadedCollections: [],
+        purchasedCollections: [],
     }),
     computed: {
         ...mapGetters([
@@ -180,8 +202,17 @@ export default {
         const allArts = await artNFTData.methods.getAllArts().call();
         console.log("=== all arts contracts ===", allArts);
         allArts.map((item) => {
-            if(this.wallet.walletId == item.ownerAddress){
-                this.collections.push({
+            if( this.wallet.walletId == item.creatorAddress ) {
+                this.uploadedCollections.push({
+                    id: item.artNFT,
+                    dataUrl: "https://ipfs.io/ipfs/"+item.ipfsHashofArt,
+                    title: item.artNFTname,
+                    detail: item.artNFTSymbol,
+                    price: this.web3.utils.fromWei(item.artPrice, 'ether'),
+                })
+            }
+            else if( this.wallet.walletId == item.ownerAddress ){
+                this.purchasedCollections.push({
                     id: item.artNFT,
                     dataUrl: "https://ipfs.io/ipfs/"+item.ipfsHashofArt,
                     title: item.artNFTname,
@@ -190,7 +221,7 @@ export default {
                 })
             }
         })
-        console.log('=== all Arts ===', this.collections);
+        console.log('=== all Arts ===', this.uploadedCollections);
 
         this.setLoading(false);
         this.reloadScript();

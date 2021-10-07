@@ -53,10 +53,13 @@ export default {
         }
     },
     components: {
+
     },
     data: () => ({
+
     }),
     mounted() {
+
     },
     methods: {
         nftItemView( id ) {
