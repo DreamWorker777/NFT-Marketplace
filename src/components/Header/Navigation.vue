@@ -33,6 +33,7 @@
                                 <ul>
                                     <li><router-link :to="{ name: 'Profile' }"> Profile </router-link></li>
                                     <li><router-link :to="{ name: 'GenerateNFT' }"> Create NFT </router-link></li>
+                                    <li><router-link :to="{ name: 'Chat' }"> Chat </router-link></li>
                                     <li><a href="#" @click.prevent="logOutAction">Logout</a></li>
                                 </ul>
                             </li>

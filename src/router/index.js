@@ -10,6 +10,7 @@ import GenNFT from '@/views/GenNFT.vue'
 import Profile from '@/views/Profile.vue'
 import Contact from '@/views/Contact.vue'
 import PasswordReset from '@/views/PasswordReset.vue'
+import Chat from '@/views/Chat.vue'
 
 import store from '@/store/store'
 
@@ -61,9 +62,16 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/chat',
+    name: 'Chat',
+    component: Chat,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/contact',
     name: 'Contact',
-    component: Contact
+    component: Contact,
+    meta: { requiresAuth: true }
   },
   {
       path: '*',

@@ -27,27 +27,28 @@
                     <div class="col-lg-8 mb-sm-30">
                     <h3>Do you have any question?</h3>
                     
-                    <form name="contactForm" id="contact_form" class="form-border" method="post" action="email.php">
-                        <div class="field-set">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name" />
-                        </div>
+                    <form name="contactForm" id="contact_form" class="form-border">
 
                         <div class="field-set">
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Your Email" />
-                        </div>
-
-                        <div class="field-set">
-                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone" />
-                        </div>
-
-                        <div class="field-set">
-                            <textarea name="message" id="message" class="form-control" placeholder="Your Message"></textarea>
+                            <textarea 
+                                name="message" 
+                                id="message" 
+                                class="form-control" 
+                                placeholder="Your Message"
+                                v-model="ticketForm.ticketContent"
+                                >
+                            </textarea>
                         </div>
 
                         <div class="spacer-half"></div>
 
                         <div id="submit">
-                            <input type="submit" id="send_message" value="Submit Form" class="btn btn-main" />
+                            <button 
+                                class="btn btn-main"
+                                @click.prevent="sendTicket"
+                            >
+                                Send Now
+                            </button>
                         </div>
                         <div id="mail_success" class="success">Your message has been sent successfully.</div>
                         <div id="mail_fail" class="error">Sorry, error occured this time sending your message.</div>
@@ -88,7 +89,60 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-    name: 'About'
+    name: 'About',
+    data: () => ({
+        ticketForm: {
+            ticketContent: '',
+        },
+        validateForm: {
+            ticketContent: true,
+        }        
+    }),
+    methods: {
+        ...mapActions([
+            'setLoading',
+            'sendTicketAction'
+        ]),
+        async sendTicket() {
+            if( this.validate() ) {
+                const self = this;
+
+                this.setLoading(true);
+
+                await this.sendTicketAction({ ticketContent: this.ticketForm.ticketContent }).then(() => {
+                    this.$notify({
+                        group: 'foo',
+                        type: 'success',
+                        title: 'Success',
+                        text: 'Successfully sent the message'
+                    });
+                    self.ticketForm.ticketContent = '';
+                }).catch(() => {
+                    this.$notify({
+                        group: 'foo',
+                        type: 'warn',
+                        title: 'Oops!',
+                        text: 'Something went wrong.'
+                    });
+                });
+
+                this.setLoading(false);
+            }
+        },
+        validate() {
+            this.validateForm.ticketContent = true;
+
+            if( this.ticketForm.ticketContent.length < 10 ) {
+                this.$toasted.error('Please enter message at least 10 characters.');
+                this.validateForm.ticketContent = false;
+                return false;
+            }
+
+            return true;
+        }
+    }
 }
 </script>

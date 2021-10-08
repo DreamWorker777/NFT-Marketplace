@@ -170,6 +170,42 @@ const actions = {
 				reject(new Error(err));
 			})
 		})
+	},
+	sendTicketAction( context, payload ) {
+		return new Promise(( resolve, reject ) => {
+			axios.post(`${apiUrl}app/sendTicket`, payload).then((res) => {
+				resolve(res);
+			}).catch((err) => {
+				reject(new Error(err));
+			})
+		})
+	},
+	fetchChats() {
+		return new Promise((resolve, reject) => {
+			axios.get(`${apiUrl}user/getContacts`).then(res => {
+				resolve(res);
+			}).catch(err => {
+				reject( new Error(err) );
+			})
+		})
+	},
+	openChat(context, payload) {
+		return new Promise((resolve, reject) => {
+			axios.get(`${apiUrl}user/getUserChat/${payload.userId}`).then(res => {
+				resolve(res);
+			}).catch(err => {
+				reject( new Error(err) );
+			})
+		})
+	},
+	sendChatMessage( context, payload ) {
+		return new Promise((resolve, reject) => {
+			axios.post(`${apiUrl}user/chat/sendUserMessage`, payload).then(res => {
+				resolve(res);
+			}).catch(err => {
+				reject( new Error(err) );
+			})
+		})
 	}
 }
 
