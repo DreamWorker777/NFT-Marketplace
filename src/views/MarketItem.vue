@@ -222,7 +222,8 @@ export default {
   },
   methods: {
     ...mapActions([
-        'setLoading'
+        'setLoading',
+        'saveTransactionHistory'
     ]),
     async buyItem(){
         this.setLoading(true);
@@ -235,10 +236,56 @@ export default {
 
         const art = await this.artNFTData.methods.getArtByNFTAddress(this.itemId).call();
         const buyAmount = await art.artPrice;
+        const ipfs_hash = await art.ipfsHashofArt;
+        console.log("ipfs_hash", ipfs_hash);
 
         console.log("this is my art", art.artNFT);
-        this.artNFTmarketplace.methods.buyPhotoNFT(art.artNFT).send({ from: this.accounts[0], value: buyAmount }).once('receipt', (receipt) => {
+        this.artNFTmarketplace.methods.buyPhotoNFT(art.artNFT).send({ from: this.accounts[0], value: buyAmount }).once('receipt', async (receipt) => {
             console.log("==response of buyArtNFT===", receipt);
+
+            const marketFeePercent = 5;
+            const loyaltyPercent = 5;
+            const marketFee = buyAmount * marketFeePercent / 100;
+            const loyaltyFee = buyAmount * loyaltyPercent / 100;
+            const purchasedMoney = buyAmount - marketFee - loyaltyFee;
+            const gasFee = receipt.gasUsed;
+            const transactionHash = receipt.transactionHash;
+            const transactionFrom = receipt.from;
+            const gasFeeTo = receipt.to;
+            const loyaltyTo = art.creatorAddress;
+            const marketplaceFeeTo = "0x976d53c3E3f6Fab8a7433Dfe4fA6D17885fDdE0c";
+
+            // purchased
+            const history = {};
+            history.transactionHash = transactionHash;
+            history.from = transactionFrom;
+            history.to = this.getArt.ownerAddress,
+            history.amount = await this.web3.utils.fromWei(purchasedMoney.toString(), 'ether');
+            history.type = 'purchase';
+            history.IPFS = this.getArt.ipfsHashofArt;
+
+            this.saveTransactionHistory(history);
+
+            // gasFee
+            history.to = gasFeeTo;
+            history.amount = await this.web3.utils.fromWei(gasFee.toString(), 'ether');
+            history.type = 'gasFee';
+            
+            this.saveTransactionHistory(history);
+
+            // loyalty
+            history.to = loyaltyTo;
+            history.amount = await this.web3.utils.fromWei(loyaltyFee.toString(), 'ether');
+            history.type = 'loyalty';
+
+            this.saveTransactionHistory(history);
+
+            // marketplaceFee
+            history.to = marketplaceFeeTo;
+            history.amount = await this.web3.utils.fromWei(marketFee.toString(), 'ether');
+            history.type = 'marketplaceFee';
+
+            this.saveTransactionHistory(history);
 
             this.setLoading(false);
             this.$notify({
@@ -247,7 +294,7 @@ export default {
                 title: 'Success',
                 text: `You've successfully purchased the NFT.`
             });
-
+            
             self.$router.push('/market');
         }).catch(err => {
             console.log(err);

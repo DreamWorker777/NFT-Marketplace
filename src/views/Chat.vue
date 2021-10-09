@@ -38,7 +38,7 @@
 
                         <div class="contact_mid">
                             <p class="contact_username"> {{ contact.sender.username }} </p>
-                            <p class="contact_lastMsg"> {{ contact.lastMsg.content }} </p>
+                            <p class="contact_lastMsg"> {{ contact.lastMsg.content.slice(0, 20) + '...' }} </p>
                         </div>
 
                         <div class="contact_badge" v-if="contact.unread">
@@ -111,6 +111,7 @@ export default {
     async mounted() {
         this.fetchChats().then(res => {
             this.contacts = res.data.contacts;
+            console.log(this.contacts);
         })
     },
     methods: {

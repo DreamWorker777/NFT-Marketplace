@@ -182,7 +182,7 @@ const actions = {
 	},
 	fetchChats() {
 		return new Promise((resolve, reject) => {
-			axios.get(`${apiUrl}user/getContacts`).then(res => {
+			axios.post(`${apiUrl}user/getContacts`).then(res => {
 				resolve(res);
 			}).catch(err => {
 				reject( new Error(err) );
@@ -201,6 +201,16 @@ const actions = {
 	sendChatMessage( context, payload ) {
 		return new Promise((resolve, reject) => {
 			axios.post(`${apiUrl}user/chat/sendUserMessage`, payload).then(res => {
+				resolve(res);
+			}).catch(err => {
+				reject( new Error(err) );
+			})
+		})
+	},
+	saveTransactionHistory( context, payload ) {
+		console.error(payload);
+		return new Promise((resolve, reject) => {
+			axios.post(`${apiUrl}app/saveTransactionHistory`, payload).then(res => {
 				resolve(res);
 			}).catch(err => {
 				reject( new Error(err) );
