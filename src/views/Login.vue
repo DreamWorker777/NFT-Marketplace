@@ -78,9 +78,20 @@
                                         <div class="field-set">
                                             <input 
                                                 type='text' 
-                                                name='email' 
-                                                id='email' 
-                                                :class="{'form-control': true, 'error_input': !validateForm.email}"
+                                                name='reset_username' 
+                                                id='reset_username' 
+                                                :class="{'form-control': true, 'error_input': !validateForm.reset_username}"
+                                                placeholder="happyCreator"
+                                                v-model="resetForm.username"
+                                                >
+                                        </div>
+
+                                        <div class="field-set">
+                                            <input 
+                                                type='text' 
+                                                name='reset_email' 
+                                                id='reset_email' 
+                                                :class="{'form-control': true, 'error_input': !validateForm.reset_email}"
                                                 placeholder="john@example.com"
                                                 v-model="resetForm.email"
                                                 >
@@ -143,12 +154,14 @@ export default {
             password: '',
         },
         resetForm: {
+            username: '',
             email: '',
         },
         validateForm: {
             username: true,
             password: true,
-            email: true,
+            reset_username: true,
+            reset_email: true,
         },
         loginPage: true,
         forgotPasswordPage: false,
@@ -216,10 +229,17 @@ export default {
             }
         },
         resetPasswordSubmit() {
-            this.validateForm.email = true;
+            this.validateForm.reset_username = true;
+            this.validateForm.reset_email = true;
+
+            if( !this.resetForm.username ) {
+                this.validateForm.reset_username = false;
+                this.$toasted.error('Username required.')
+                return;
+            }
 
             if( !this.resetForm.email ) {
-                this.validateForm.email = false;
+                this.validateForm.reset_email = false;
                 this.$toasted.error('Email required.')
                 return;
             }

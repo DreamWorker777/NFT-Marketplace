@@ -1,6 +1,6 @@
 const axios = require('axios')
-const apiUrl = 'http://10.10.12.183:3000/api/'
-// const apiUrl = "https://truhelix.com/"
+// const apiUrl = 'http://10.10.12.183:3000/api/'
+const apiUrl = "https://truhelix.com/node/api/"
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 axios.defaults.headers.common['x-access-token'] = localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).success
@@ -37,11 +37,12 @@ const actions = {
 			}
 			
 			axios.post(`${apiUrl}auth/signin`, loginData).then((res) => {
-
-				context.commit('UPDATE_SIGNED', true);
-				context.commit('UPDATE_USER_INFO', res.data);
-
-				axios.defaults.headers.common['x-access-token'] = res.data.accessToken
+				if( res.data.success ) {
+					context.commit('UPDATE_SIGNED', true);
+					context.commit('UPDATE_USER_INFO', res.data);
+	
+					axios.defaults.headers.common['x-access-token'] = res.data.accessToken					
+				}
 				
 				resolve(res);
 			}).catch((err) => {
@@ -52,11 +53,7 @@ const actions = {
 
     requestReset( context, payload ) {
         return new Promise(( resolve, reject ) => {
-            const resetData = {
-                email: payload.email,
-            }
-
-            axios.post(`${apiUrl}auth/requestPasswordReset`, resetData).then((res) => {
+            axios.post(`${apiUrl}auth/requestPasswordReset`, payload).then((res) => {
                 resolve(res);
             }).catch(err => {
                 reject( new Error(err) );
