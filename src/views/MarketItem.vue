@@ -68,9 +68,16 @@
                                 <p>{{ nftDataById.createdAt }}</p>
                             </div>
 
-                            <div class="itemSector">
+                            <div :class="{'itemSector': true, 'priceEdit': editing}">
                                 <p class="itemSector__title">Price : </p>
-                                <p>{{ nftDataById.price }} BNB</p>
+                                <p v-show="!editing">{{ nftDataById.price }} BNB</p>
+
+                                <input
+                                    v-show="editing"
+                                    type="number" 
+                                    :class="{'form-control': true, 'error_input': !validateForm.price}"
+                                    v-model="nftDataById.price"
+                                    placeholder="enter price for one item (BNB)" />
                             </div>
 
                             <h6>Owner</h6>
@@ -160,7 +167,8 @@ export default {
         editing: false,
         validateForm: {
             title: true,
-            detail: true
+            detail: true,
+            price: true,
         }
     }),
   props: ['itemId'],
@@ -309,7 +317,9 @@ export default {
         const art = await this.artNFTData.methods.getArtByNFTAddress(this.itemId).call();
         console.log("+ update gen nft +", art);
 
-        this.artNFTData.methods.UpdateArtdata(art.artNFT, this.nftDataById.title, this.nftDataById.detail).send({ from: this.accounts[0] }).once('receipt', (receipt) => {
+        const price = await this.web3.utils.toWei(this.nftDataById.price, 'ether');
+
+        this.artNFTData.methods.UpdateArtdata(art.artNFT, this.nftDataById.title, this.nftDataById.detail, price).send({ from: this.accounts[0] }).once('receipt', (receipt) => {
             console.log("=== updated dat ===", receipt);
 
             this.setLoading(false);
@@ -323,32 +333,48 @@ export default {
         })
 
     },
-    cancelEdit() {
+    async cancelEdit() {
         this.editing = false;
         this.nftDataById.detail = this.getArtDetail.artNFTdetail;
         this.nftDataById.title = this.getArt.artNFTname;
+        this.nftDataById.price = await this.web3.utils.fromWei(this.getArt.artPrice, 'ether');
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.itemSector {
-    display: flex;
 
-    &__title {
-        font-weight: 800;
-        margin-right: 10px;
-        color: rgb(78, 78, 78);
+    .itemSector {
+        display: flex;
+
+        &__title {
+            font-weight: 800;
+            margin-right: 10px;
+            color: rgb(78, 78, 78);
+        }
     }
-}
-.edit_input {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.btn-cancel {
-    margin-left: 10px;
-    background: #b7b7b7;
-}
+
+    .priceEdit {
+        align-items: center;
+        margin-bottom: 20px;
+
+        .itemSector__title {
+            margin-bottom: 0;
+        }
+
+        input {
+            width: 15%;
+        }
+    }
+
+    .edit_input {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .btn-cancel {
+        margin-left: 10px;
+        background: #b7b7b7;
+    }
 </style>

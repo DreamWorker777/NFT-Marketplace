@@ -25,9 +25,9 @@
                     <div class="col-lg-12">
 
                         <div class="items_filter">
-                            <form action="blank.php" class="row form-dark" id="form_quick_search" method="post" name="form_quick_search">
+                            <form class="row form-dark" id="form_quick_search">
                                 <div class="col text-center">
-                                    <input class="form-control" id="name_1" name="name_1" placeholder="search item here..." type="text" /> <a href="#" id="btn-submit"><i class="fa fa-search bg-color-secondary"></i></a>
+                                    <input class="form-control" v-model="searchString" placeholder="search item here..." type="text" /> <a href="#" id="btn-submit"><i class="fa fa-search bg-color-secondary"></i></a>
                                     <div class="clearfix"></div>
                                 </div>
                             </form>
@@ -35,42 +35,18 @@
                             <div id="item_category" class="dropdown">
                                 <a href="#" class="btn-selector">All categories</a>
                                 <ul>
-                                    <li class="active"><span>All categories</span></li>
-                                    <li><span>Art</span></li>
-                                    <li><span>Music</span></li>
-                                    <li><span>Domain Names</span></li>
-                                    <li><span>Virtual World</span></li>
-                                    <li><span>Trading Cards</span></li>
-                                    <li><span>Collectibles</span></li>
-                                    <li><span>Sports</span></li>
-                                    <li><span>Utility</span></li>
+                                    <li class="active" @click.prevent="selectCategory('')"><span>All categories</span></li>
+                                    <li v-for="(item, index) in categories" :key="index" @click.prevent="selectCategory(item)">
+                                        <span>{{ item }}</span>
+                                    </li>
                                 </ul>
                             </div>
-
-                            <div id="buy_category" class="dropdown">
-                                <a href="#" class="btn-selector">Buy Now</a>
-                                <ul>
-                                    <li class="active"><span>Buy Now</span></li>
-                                    <li><span>On Auction</span></li>
-                                    <li><span>Has Offers</span></li>
-                                </ul>
-                            </div>
-
-                            <div id="items_type" class="dropdown">
-                                <a href="#" class="btn-selector">All Items</a>
-                                <ul>
-                                    <li class="active"><span>All Items</span></li>
-                                    <li><span>Single Items</span></li>
-                                    <li><span>Bundles</span></li>
-                                </ul>
-                            </div>
-
                         </div>
                     </div>                     
                     <!-- nft item begin -->
                     <div 
                         class="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                        v-for="(item, index) in datas"
+                        v-for="(item, index) in filteredData"
                         :key="index"
                     >
                         <div class="nft__item">
@@ -121,11 +97,15 @@ export default {
     data: () => ({
         web3: null,
         datas: [],
+        filteredData: [],
+        categories: [],
+        category: '',
+        searchString: '',
     }),
     computed: {
     },
     async mounted() {
-        this.setLoading(true);
+        this.setLoading(true).catch(err => console.log('error', err));
 
         // TODO: Get web3 & network id
         this.web3 = initweb3;
@@ -135,7 +115,7 @@ export default {
         }
         console.log('first mounted', this.web3);
 
-        const networkId = await this.web3.eth.net.getId();
+        const networkId = await this.web3.eth.net.getId().catch(err => console.error(err));
         console.log('web3 network', networkId);
 
         // TODO: Get ArtNFTData smart contract instance
@@ -149,20 +129,30 @@ export default {
 
         // TODO: Get All NFTDatas
         const allArts = await artNFTData.methods.getAllArts().call();
+        const allArtDetails = await artNFTData.methods.getAllArtDetails().call();
         console.log("=== all arts contracts ===", allArts);
+        console.log("=== all arts contracts ===", allArtDetails);
 
-        allArts.map((item) => {
+        allArts.map((item, index) => {
+            const category = allArtDetails[index].artNFTspfield.split('(+)')[0];
+
+            const isExist = this.categories.findIndex(item => item === category);
+            if( isExist === -1 )
+                this.categories.push(category);
+
             this.datas.push({
                 id: item.artNFT,
                 dataUrl: "https://ipfs.io/ipfs/"+item.ipfsHashofArt,
                 title: item.artNFTname,
                 detail: item.artNFTSymbol,
                 price: this.web3.utils.fromWei(item.artPrice, 'ether'),
+                category: category
             })
         })
         console.log('=== all Arts ===', this.datas);
+        this.filteredData = this.datas;
 
-        this.setLoading(false);
+        this.setLoading(false).catch(err => console.error(err));
         this.reloadScript();
     },
     methods: {
@@ -170,15 +160,38 @@ export default {
             'getNFTs',
             'setLoading'
         ]),
+
         nftItemView( id ) {
             this.$router.push(`/market/${id}`)
         },
+        
+        selectCategory( value ) {
+            this.category = value;
+        },
+
         reloadScript() {
             this.$unloadScript('https://gigaland.io/js/designesia.js')
             .then(() => {
                 this.$loadScript('https://gigaland.io/js/designesia.js')
             });
+        },
+
+        filter() {
+            this.filteredData = this.datas.filter((item) => {
+                return (item.category === this.category || this.category == '') &&
+                        (item.title.includes(this.searchString) || item.detail.includes(this.searchString) || item.category.includes(this.searchString) || this.searchString == '');
+            });
+
+            this.reloadScript();
         }
+    },
+    watch: {
+        category: function() {
+            this.filter();
+        },
+        searchString: function() {
+            this.filter();
+        },
     }
 }
 </script>

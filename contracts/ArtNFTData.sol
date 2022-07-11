@@ -55,11 +55,14 @@ contract ArtNFTData is ArtNFTDataStorages {
         art.status = _newStatus;
     }
 
-    function UpdateArtdata(ArtNFT _artNFT, string memory _title, string memory dxetail) public returns (bool) {
+    function UpdateArtdata(ArtNFT _artNFT, string memory _title, string memory _detail, uint memory _price) public returns (bool) {
         uint artIndex = getArtIndex(_artNFT);
         Art storage art = arts[artIndex];
         art.artNFTname = _title;
-        // art.artNFTDetail = dxetail;
+        art.artPrice = _price;
+
+        ArtDetail storage artDetail = artDetails[artIndex];
+        artDetail.artNFTdetail = _detail;
     }
 
     function getArt(uint index) public view returns (Art memory _art) {
@@ -109,4 +112,7 @@ contract ArtNFTData is ArtNFTDataStorages {
         return arts;
     }
 
+    function getAllArtDetails() public view returns (ArtDetail[] memory _artDetails) {
+        return artDetails;
+    }
 }

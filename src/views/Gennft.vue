@@ -242,6 +242,7 @@ export default {
         ...mapActions([
             'setLoading',
             'getBadWordList',
+            'convertPicture',
         ]),
         onnftfilechange() {
             const self = this;
@@ -249,7 +250,6 @@ export default {
             const reader = new FileReader();
             reader.onload = function( e ) {
                 const uril = e.target.result;
-                self.nftStateStr = '';
                 self.$refs.nftdataImg.src = uril;
             }
             reader.readAsDataURL(nftfiles[0]);
@@ -268,51 +268,60 @@ export default {
             const self = this;
             
             if( this.validate() ) {
-                this.setLoading(true);
+                // confirm copyrighter
+                this.$confirm('By uploading this file, you state that you are the rightful copyright owner of this asset and agree to use this marketplace to generate NFTs for copyright and for sale.', 'Are you sure?', 'question').then(async () => {
 
-                let ipfsId;
-                console.log('Create NFT Data: ', this.nftdata)
-                
-                ipfs.default.add(this.nftdata).then((res) => {
-                    ipfsId = res[0].hash;
-                    console.log("IPFS ID(hash): ", ipfsId);
-                    const art_price = self.web3.utils.toWei(self.nftDataform.price, 'ether');
-                    const artsymbol = "truhelix";
-                    const nowTime = new Date().valueOf();
-                    const spfield = self.nftDataform.category + "(+)" + self.nftDataform.type + "(+)" + self.nftDataform.keyword + "(+)" + nowTime.toString();
-                    self.artNFTFactory.methods.createNewArtNFT(self.nftDataform.title, self.nftDataform.detail, spfield, artsymbol, art_price, ipfsId)
-                        .send({ from: self.account[0] })
-                        .once('receipt', (receipt) => {
-                            console.log('===receipt===', receipt);
-                            const Art_NFT = receipt.events.ArtNFTCreated.returnValues.artNFT;
-                            console.log("l=== receipt ARTNFT ===l", Art_NFT);
-                            const jsonArtNFT = require("../../build/contracts/ArtNFT.json");
-                            console.log("jsonArtNFT: ", jsonArtNFT);
-                            let artNFT = new self.web3.eth.Contract(jsonArtNFT.abi, Art_NFT);
-                            console.log("== artNFT contract ==", artNFT);
-                            const artId = 1;
-                            artNFT.methods.ownerOf(artId).call().then(owner => console.log('ooooo= owner of artId 1 =oooo', owner));
-                            artNFT.methods.approve(self.artNFTmarketAddress, artId).send({from: self.account[0]}).once('receipt', (receipt) => {
-                                this.setLoading(false);
-                                console.log("== nft approve ==", receipt);
+                   this.setLoading(true);
 
-                                this.$notify({
-                                    group: 'foo',
-                                    type: 'success',
-                                    title: 'Success',
-                                    text: `You've successfully created your own NFT.`
-                                });
+                    let ipfsId;
+                    console.log('Create NFT Data: ', this.nftdata)
+                    
+                    // await this.convertPicture({ imageData: this.nftdata}).then((res) => {
+                    //     console.log(res);
+                    // });
 
-                                self.$router.push('/market')
+                    ipfs.default.add(this.nftdata).then((res) => {
+                        ipfsId = res[0].hash;
+                        console.log("IPFS ID(hash): ", ipfsId);
+                        const art_price = self.web3.utils.toWei(self.nftDataform.price, 'ether');
+                        const artsymbol = "truhelix";
+                        const nowTime = new Date().valueOf();
+                        const spfield = self.nftDataform.category + "(+)" + self.nftDataform.type + "(+)" + self.nftDataform.keyword + "(+)" + nowTime.toString();
+                        self.artNFTFactory.methods.createNewArtNFT(self.nftDataform.title, self.nftDataform.detail, spfield, artsymbol, art_price, ipfsId)
+                            .send({ from: self.account[0] })
+                            .once('receipt', (receipt) => {
+                                console.log('===receipt===', receipt);
+                                const Art_NFT = receipt.events.ArtNFTCreated.returnValues.artNFT;
+                                console.log("l=== receipt ARTNFT ===l", Art_NFT);
+                                const jsonArtNFT = require("../../build/contracts/ArtNFT.json");
+                                console.log("jsonArtNFT: ", jsonArtNFT);
+                                let artNFT = new self.web3.eth.Contract(jsonArtNFT.abi, Art_NFT);
+                                console.log("== artNFT contract ==", artNFT);
+                                const artId = 1;
+                                artNFT.methods.ownerOf(artId).call().then(owner => console.log('ooooo= owner of artId 1 =oooo', owner));
+                                artNFT.methods.approve(self.artNFTmarketAddress, artId).send({from: self.account[0]}).once('receipt', (receipt) => {
+                                    this.setLoading(false);
+                                    console.log("== nft approve ==", receipt);
+
+                                    this.$notify({
+                                        group: 'foo',
+                                        type: 'success',
+                                        title: 'Success',
+                                        text: `You've successfully created your own NFT.`
+                                    });
+
+                                    self.$router.push('/market')
+                                })
                             })
-                        })
-                }).catch( err => {
-                    console.warn('create NFT ipfs error: ', err);
-                    this.$notify({
-                        group: 'foo',
-                        type: 'error',
-                        title: 'Create failed',
-                        text: 'Something went wrong!'
+                    }).catch( err => {
+                        this.setLoading(false);
+                        console.warn('create NFT ipfs error: ', err);
+                        this.$notify({
+                            group: 'foo',
+                            type: 'error',
+                            title: 'Create failed',
+                            text: 'Something went wrong!'
+                        });
                     });
                 });
             }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import LoadScript from 'vue-plugin-load-script'
 import Toasted from 'vue-toasted'
 import Notifications from 'vue-notification'
+import VueSimpleAlert from "vue-simple-alert";
 
 import router from './router'
 import store from './store/store'
@@ -18,6 +19,7 @@ Vue.use(Notifications)
 
 Vue.use(BinanceLogo)
 Vue.use(LoadScript)
+Vue.use(VueSimpleAlert)
 
 new Vue({
   BinanceLogo,

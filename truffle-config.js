@@ -20,7 +20,7 @@
 require('dotenv').config();
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const mnemonic = process.env.MNEMONIC;
-const mnemonic = "sphere gift lock calm sketch act fall uphold hub pair reduce refuse";
+const mnemonic = "sting lift deer baby skin organ stumble behind measure hover perfect laundry";
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
@@ -49,7 +49,7 @@ module.exports = {
       networkCheckTimeout: 10000000,
       confirmations: 2,
       timeoutBlocks: 200,  
-      skipDryRun: true
+      skipDryRun: true,
     },
     bsc: {
       provider: () => new HDWalletProvider(mnemonic, `https://bsc-dataseed1.binance.org`),

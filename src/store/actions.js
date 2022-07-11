@@ -157,6 +157,8 @@ const actions = {
 		return new Promise((resolve) => {
 			context.commit('SETLOADING', payload)
 			resolve('Set Loading')
+		}).catch(err => {
+			console.warn('setLoading error: ', err);
 		})
 	},
 	getBadWordList( ) {
@@ -213,7 +215,17 @@ const actions = {
 				reject( new Error(err) );
 			})
 		})
-	}
+	},
+	convertPicture(context, payload) {
+		return new Promise((resolve, reject) => {
+			const imageData = payload.imageData;
+			axios.post(`${apiUrl}nftdata/convertPicture`, {imageData: imageData}).then((res) => {
+				resolve(res);
+			}).catch((err) => {
+				reject(new Error(err));
+			})
+		})
+	},
 }
 
 export default actions
